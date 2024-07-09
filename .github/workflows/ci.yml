@@ -57,9 +57,5 @@ jobs:
         id: test-action
         uses: ./
         with:
-          json: '{ "JSON_VAR": "hello" }'
-          ebx_INLINE_VAR: 'inline'
+          bucket_name: my-bucket
 
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.result }}"
