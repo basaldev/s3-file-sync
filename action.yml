@@ -1,0 +1,25 @@
+name: 'S3 Sync'
+description:
+  'Sync files from a local directory to an S3 bucket using s3-sync-client'
+inputs:
+  bucket_name:
+    description: 'The name of the S3 bucket'
+    required: true
+  source_directory:
+    description: 'The source directory to sync'
+    required: true
+  aws_region:
+    description: 'The AWS region of the S3 bucket'
+    required: true
+  aws_access_key_id:
+    description: 'AWS Access Key ID'
+    required: true
+  aws_secret_access_key:
+    description: 'AWS Secret Access Key'
+    required: true
+branding:
+  icon: zap-off
+  color: orange
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
