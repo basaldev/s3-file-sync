@@ -2,6 +2,7 @@ import { S3Client } from '@aws-sdk/client-s3';
 import { S3SyncClient } from 's3-sync-client';
 import path from 'path';
 import * as core from '@actions/core';
+import mime from 'mime-types';
 
 async function s3FileSync() {
   try {
@@ -26,7 +27,12 @@ async function s3FileSync() {
     const syncAllFiles = async () => {
       await sync(distDir, `s3://${bucketName}`, {
         del: true,
-        filters: [{ exclude: (key: string) => key.endsWith('.DS_Store') }]
+        filters: [
+          { exclude: (key: string) => key.endsWith('.DS_Store') },
+        ],
+        commandInput: (input: Record<string, any>) => ({
+          ContentType: mime.lookup(input.Key) || 'text/html',
+        }),
       });
     };
 
