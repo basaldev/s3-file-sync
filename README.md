@@ -1,8 +1,8 @@
 # basaldev/s3-file-sync
 
-![CI](https://github.com/basaldev/s3-file-sync/workflows/ci.yml/badge.svg)
-[![Check dist/](https://github.com/basaldev/s3-file-sync/workflows/check-dist.yml/badge.svg)](https://github.com/basaldev/s3-file-sync/workflows/check-dist.yml)
-[![CodeQL](https://github.com/basaldev/s3-file-sync/workflows/codeql-analysis.yml/badge.svg)](https://github.com/basaldev/s3-file-sync/workflows/codeql-analysis.yml)
+![CI](https://github.com/basaldev/s3-file-sync/actions/workflows/ci.yml/badge.svg)
+[![Check dist/](https://github.com/basaldev/s3-file-sync/actions/workflows/check-dist.yml/badge.svg)](https://github.com/basaldev/s3-file-sync/actions/workflows/check-dist.yml)
+[![CodeQL](https://github.com/basaldev/s3-file-sync/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/basaldev/s3-file-sync/actions/workflows/codeql-analysis.yml)
 [![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
 
 # S3 File Sync Action
