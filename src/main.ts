@@ -27,12 +27,15 @@ async function s3FileSync() {
     const syncAllFiles = async () => {
       await sync(distDir, `s3://${bucketName}`, {
         del: true,
-        filters: [
-          { exclude: (key: string) => key.endsWith('.DS_Store') },
-        ],
-        commandInput: (input: Record<string, any>) => ({
-          ContentType: mime.lookup(input.Key) || 'text/html',
-        }),
+        filters: [{ exclude: (key: string) => key.endsWith('.DS_Store') }],
+        commandInput: (input: Record<string, any>) => {
+          const mimeType = mime.lookup(input.Key) || 'text/html';
+          core.info(`File: ${input.Key} (${mimeType})`);
+          core.debug(`File: ${input.Key} (${mimeType})`);
+          return {
+            ContentType: mimeType
+          };
+        }
       });
     };
 
