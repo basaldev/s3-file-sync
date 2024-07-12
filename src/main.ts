@@ -11,12 +11,14 @@ async function s3FileSync() {
     const region = core.getInput('aws_region');
     const accessKeyId = core.getInput('aws_access_key_id');
     const secretAccessKey = core.getInput('aws_secret_access_key');
+    const sessionToken = core.getInput('aws_session_token');
 
     const s3Client = new S3Client({
       region,
       credentials: {
         accessKeyId,
-        secretAccessKey
+        secretAccessKey,
+        ...(sessionToken ? { sessionToken } : {})
       }
     });
 

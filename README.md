@@ -18,6 +18,7 @@ patterns and setting custom content types.
 - `aws_region`: The AWS region of the S3 bucket.
 - `aws_access_key_id`: AWS Access Key ID.
 - `aws_secret_access_key`: AWS Secret Access Key.
+- `aws_session_token`: AWS session token for those using roles/temporary credentials for deployment (optional)
 
 ## Example Usage
 
