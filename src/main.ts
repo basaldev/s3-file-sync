@@ -26,38 +26,19 @@ async function s3FileSync() {
 
     const distDir = path.resolve(sourceDirectory);
 
-    const syncAllFiles = async () => {
-      await sync(distDir, `s3://${bucketName}`, {
-        del: true,
-        filters: [{ exclude: (key: string) => key.endsWith('.DS_Store') }],
-        commandInput: (input: Record<string, any>) => {
-          const mimeType = mime.lookup(input.Key) || 'text/html';
-          core.info(`File: ${input.Key} (${mimeType})`);
-          core.debug(`File: ${input.Key} (${mimeType})`);
-          return {
-            ContentType: mimeType
-          };
-        }
-      });
-    };
+    await sync(distDir, `s3://${bucketName}`, {
+      del: true,
+      filters: [{ exclude: (key: string) => key.endsWith('.DS_Store') }],
+      commandInput: (input: Record<string, any>) => {
+        const mimeType = mime.lookup(input.Key) || 'text/html';
+        core.info(`File: ${input.Key} (${mimeType})`);
+        core.debug(`File: ${input.Key} (${mimeType})`);
+        return {
+          ContentType: mimeType
+        };
+      }
+    });
 
-    const syncJSFiles = async () => {
-      await sync(distDir, `s3://${bucketName}`, {
-        del: true,
-        filters: [
-          { exclude: () => true },
-          { include: (key: string) => key.endsWith('.js') }
-        ],
-        commandInput: {
-          ContentType: 'application/javascript'
-        }
-      });
-    };
-
-    await syncAllFiles();
-    await syncJSFiles();
-
-    core.info('Sync completed successfully.');
   } catch (error) {
     core.setFailed(`Action failed with error: ${error}`);
   }
@@ -66,7 +47,7 @@ async function s3FileSync() {
 export async function run() {
   try {
     await s3FileSync();
-    core.info('Complete');
+    core.info(`Sync completed successfully.`);
   } catch (error) {
     core.error(error instanceof Error ? error : 'Unexpected error occurred');
   } finally {
