@@ -18,7 +18,8 @@ inputs:
     description: 'AWS Secret Access Key'
     required: true
   aws_session_token:
-    description: 'AWS session token for those using roles with temporary credentials'
+    description:
+      'AWS session token for those using roles with temporary credentials'
     required: false
 branding:
   icon: zap-off
